@@ -14,10 +14,12 @@ spec:
       labels:
         app: python-k8s-app
     spec:
+      imagePullSecrets:
+        - name: acr-secret
       containers:
         - name: python-k8s-app
-          image: python-k8s-app:latest
-          imagePullPolicy: IfNotPresent
+          image: officeacr2026.azurecr.io/python-k8s-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:
