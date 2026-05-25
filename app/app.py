@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return {
-        "message": "Python Flask app is running successfully in Kubernetes",
+        "message": "Python Flask app is running successfully in Local Kubernetes",
         "environment": os.getenv("APP_ENV", "local"),
         "timestamp": datetime.utcnow().isoformat() + "Z"
     }

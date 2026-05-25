@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: python-k8s-app
-          image: REPLACE_ACR_LOGIN_SERVER/python-k8s-app:latest
-          imagePullPolicy: Always
+          image: python-k8s-app:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
           env:
