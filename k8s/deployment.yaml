@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-k8s-app
+  labels:
+    app: python-k8s-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-k8s-app
+  template:
+    metadata:
+      labels:
+        app: python-k8s-app
+    spec:
+      containers:
+        - name: python-k8s-app
+          image: REPLACE_ACR_LOGIN_SERVER/python-k8s-app:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          env:
+            - name: APP_ENV
+              value: "kubernetes"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 20
